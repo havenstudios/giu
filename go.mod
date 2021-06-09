@@ -1,5 +1,4 @@
-module github.com/AllenDang/giu
-
+module github.com/havenstudios/giu // [HAVEN_START] : carl : creating havenstudios giu fork
 go 1.16
 
 require (
