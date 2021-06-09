@@ -1,6 +1,7 @@
 package giu
 
 import (
+	"image"
 	"image/color"
 	"time"
 
@@ -274,3 +275,16 @@ func (w *MasterWindow) Run(loopFunc func()) {
 		})
 	})
 }
+
+// [HAVEN_START] : carl : Adding a way to set the window icon
+func (w *MasterWindow) SetIcon(images []image.Image) {
+	if w.platform != nil {
+		if glfwPlatform, ok := w.platform.(*imgui.GLFW); ok {
+			mainthread.CallNonBlock(func() {
+				glfwPlatform.GetWindow().SetIcon(images)
+			})
+		}
+	}
+}
+
+// [HAVEN_END]
