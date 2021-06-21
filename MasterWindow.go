@@ -288,3 +288,22 @@ func (w *MasterWindow) SetIcon(images []image.Image) {
 }
 
 // [HAVEN_END]
+
+// [HAVEN_START] : carl : Adding a way to minimize window and to set the refresh rate of the window
+func (w *MasterWindow) MinimizeWindow() {
+	if w.platform != nil {
+		if glfwPlatform, ok := w.platform.(*imgui.GLFW); ok {
+			mainthread.CallNonBlock(func() {
+				glfwPlatform.GetWindow().Iconify()
+			})
+		}
+	}
+}
+
+func (w *MasterWindow) SetTPS(tps int) {
+	if w.platform != nil {
+		w.platform.SetTPS(tps)
+	}
+}
+
+// [HAVEN_END]
